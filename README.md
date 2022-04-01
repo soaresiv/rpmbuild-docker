@@ -11,10 +11,10 @@ Build an image using the Dockerfile:
 docker build \
 --build-arg USER=${USER} \
 --build-arg UID=$(id -u) \
---build-arg GID=$(id -g) \ 
+--build-arg GID=$(id -g) \
 --build-arg PW=docker \
 --tag rpm-build \
---file Dockerfile
+.
 ```
 
 Run the `BuildRPM.sh` script in a new container and automatically remove the container when it exits

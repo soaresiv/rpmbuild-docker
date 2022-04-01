@@ -10,9 +10,11 @@ ARG PW=docker
 # Option1: Using unencrypted password/ specifying password
 RUN useradd -m ${USER} --uid=${UID} && echo "${USER}:${PW}" | chpasswd
 
-RUN mkdir /code && mkdir -p /external/shell-logger/ && ln -s /code/external/shell-logger/shell-logger /external/shell-logger/shell-logger
+RUN mkdir -p /code /artifacts /external/shell-logger  && ln -s /code/external/shell-logger/shell-logger /external/shell-logger/shell-logger
 
-RUN chown --changes --silent --no-dereference --recursive ${USER}:${GID} /home/${USER}
+RUN chown --changes --no-dereference --recursive ${USER}:${GID} /home/${USER}
+RUN chown --changes --no-dereference --recursive ${USER}:${GID} /code
+RUN chown --changes --no-dereference --recursive ${USER}:${GID} /artifacts
 
 USER ${UID}:${GID}
 
